@@ -1,0 +1,109 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #666666;
+  --color-border: #e5e5e5;
+
+  --motion-fast: 200ms;
+  --motion-medium: 400ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Manrope", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+dialog.pages {
+  width: 99vw;
+  height: 95vh;
+  border: none;
+  background: transparent;
+}
+
+.home h1 {
+  font-size: 48px;
+  letter-spacing: -5px;
+  font-weight: 600;
+}
+
+.home p {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.stack {
+  position: relative;
+  overflow: hidden;
+  height: 260px;
+  margin-top: 20px;
+  visibility: hidden;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  transition: opacity 300ms ease, transform 400ms ease;
+}
+
+.page.enter-next {
+  transform: translateX(20px);
+}
+
+.page.enter-prev {
+  transform: translateX(-20px);
+}
+
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page.exit-next {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.page.exit-prev {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.nav-arrow {
+  position: fixed;
+  bottom: 32px;
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 200ms ease, opacity 200ms ease;
+}
+
+.nav-arrow:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-arrow.left {
+  left: 32px;
+}
+
+.nav-arrow.right {
+  right: 32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    transition: none;
+    transform: none;
+  }
+}
