@@ -1,6 +1,6 @@
 :root {
-  --color-bg: #ffffff;
-  --color-text: #111111;
+  --color-bg: #1a1a1a;
+  --color-text: #e0e0e0;
   --color-muted: #666666;
   --color-border: #e5e5e5;
 
@@ -29,22 +29,10 @@ dialog.pages {
   background: transparent;
 }
 
-.home h1 {
-  font-size: 48px;
-  letter-spacing: -5px;
-  font-weight: 600;
-}
-
-.home p {
-  font-size: 14px;
-  color: var(--color-muted);
-}
-
 .stack {
   position: relative;
   overflow: hidden;
-  height: 260px;
-  margin-top: 20px;
+  height: 95vh;
   visibility: hidden;
 }
 
@@ -52,6 +40,7 @@ dialog.pages {
   position: absolute;
   inset: 0;
   transition: opacity 300ms ease, transform 400ms ease;
+  color: var(--color-text);
 }
 
 .page.enter-next {
@@ -79,7 +68,7 @@ dialog.pages {
 
 .nav-arrow {
   position: fixed;
-  bottom: 32px;
+  bottom: 25px;
   background: none;
   border: 1px solid var(--color-border);
   color: var(--color-text);
@@ -94,11 +83,11 @@ dialog.pages {
 }
 
 .nav-arrow.left {
-  left: 32px;
+  left: 30px;
 }
 
 .nav-arrow.right {
-  right: 32px;
+  right: 30px;
 }
 
 @media (prefers-reduced-motion: reduce) {
