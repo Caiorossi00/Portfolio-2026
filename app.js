@@ -113,4 +113,4 @@ setTimeout(() => {
   if (info) info.remove();
 }, 5000);
 
-loadPage(1);
+loadPage(0);
