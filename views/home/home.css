@@ -1,8 +1,7 @@
 .home-header h1 {
-  font-family: "Manrope", sans-serif;
   font-size: 5em;
   line-height: 0.9;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   color: #fff;
   letter-spacing: -8px;
 }
@@ -10,7 +9,7 @@
 .home-header p {
   font-family: var(--font-sans);
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.4;
   color: #a0a0a0;
   font-weight: 300;
   max-width: 750px;

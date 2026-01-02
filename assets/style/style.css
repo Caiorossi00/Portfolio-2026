@@ -22,9 +22,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#navbar {
+  display: flex;
+  align-items: center;
+  padding: 1.5em;
+  gap: 1.5em;
+  justify-content: flex-end;
+  padding-right: 2em;
+  padding-top: 2em;
+
+  i {
+    font-size: 1.4em;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 dialog.pages {
   width: 99vw;
-  height: 95vh;
+  height: 90vh;
   border: none;
   background: transparent;
 }
@@ -32,7 +51,7 @@ dialog.pages {
 .stack {
   position: relative;
   overflow: hidden;
-  height: 95vh;
+  height: 92vh;
   visibility: hidden;
 }
 
