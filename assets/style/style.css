@@ -16,10 +16,26 @@
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
   font-family: "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
+  color: var(--color-text);
+  position: relative;
+  background: var(--color-bg);
+
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://images.squarespace-cdn.com/content/v1/689f678899d6d156006cbe61/0e90854b-6ec0-439e-a40d-6db7af4fdc3b/topolines.png?format=1000w")
+    center/cover no-repeat;
+  opacity: 0.5;
+  z-index: -1;
 }
 
 #navbar {
@@ -51,7 +67,7 @@ dialog.pages {
 .stack {
   position: relative;
   overflow: hidden;
-  height: 92vh;
+  height: 80vh;
   visibility: hidden;
 }
 
