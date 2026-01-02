@@ -1,5 +1,5 @@
 :root {
-  --color-bg: #1a1a1a;
+  --color-bg: #0f0f0f;
   --color-text: #e0e0e0;
   --color-muted: #666666;
   --color-border: #e5e5e5;
@@ -45,21 +45,36 @@ body::before {
   gap: 1.5em;
   justify-content: flex-end;
   padding-right: 2em;
-  padding-top: 2em;
+  padding-bottom: 0;
+}
 
-  i {
-    font-size: 1.4em;
-  }
+#navbar i {
+  font-size: 1.4em;
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+#navbar a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#navbar a:hover {
+  transform: scale(1.15);
+  color: #ffffff;
+}
+
+#navbar p {
+  width: 400px;
+  text-align: center;
+  font-size: 13px;
+  margin-right: 2vw;
+  animation: pulse 2.3s infinite alternate;
 }
 
 dialog.pages {
   width: 99vw;
-  height: 90vh;
+  height: 95vh;
   border: none;
   background: transparent;
 }
@@ -67,7 +82,7 @@ dialog.pages {
 .stack {
   position: relative;
   overflow: hidden;
-  height: 80vh;
+  height: 90vh;
   visibility: hidden;
 }
 
@@ -129,5 +144,20 @@ dialog.pages {
   .page {
     transition: none;
     transform: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
   }
 }

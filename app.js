@@ -10,7 +10,6 @@ let isTransitioning = false;
 
 function loadPageStyle(pageName) {
   const id = `page-style-${pageName}`;
-
   if (document.getElementById(id)) return;
 
   const link = document.createElement("link");
@@ -28,11 +27,9 @@ async function loadPage(index, direction = "next") {
   isTransitioning = true;
 
   const pageName = pages[index];
-
   loadPageStyle(pageName);
 
   const currentPage = stack.querySelector(".page.active");
-
   const response = await fetch(`views/${pageName}/${pageName}.html`);
   const html = await response.text();
 
@@ -42,9 +39,7 @@ async function loadPage(index, direction = "next") {
   wrapper.innerHTML = html;
 
   stack.appendChild(wrapper);
-
   wrapper.offsetHeight;
-
   wrapper.classList.add("active");
 
   if (isFirstLoad) {
@@ -55,7 +50,6 @@ async function loadPage(index, direction = "next") {
   if (currentPage) {
     currentPage.classList.remove("active");
     currentPage.classList.add(`exit-${direction}`);
-
     currentPage.addEventListener("transitionend", () => currentPage.remove(), {
       once: true,
     });
@@ -63,9 +57,14 @@ async function loadPage(index, direction = "next") {
 
   wrapper.addEventListener(
     "transitionend",
-    () => {
+    async () => {
       isTransitioning = false;
       updateNavigation();
+
+      if (pageName === "about") {
+        const module = await import("./views/about/about.js");
+        module.initAboutPage(wrapper);
+      }
     },
     { once: true }
   );
@@ -79,28 +78,39 @@ function updateNavigation() {
     currentIndex === pages.length - 1 ? "hidden" : "visible";
 }
 
-/* Setas */
 prevBtn.addEventListener("click", () => loadPage(currentIndex - 1, "prev"));
-
 nextBtn.addEventListener("click", () => loadPage(currentIndex + 1, "next"));
 
-/* Teclado */
 document.addEventListener("keydown", (e) => {
   if (isTransitioning) return;
-
   if (e.key === "ArrowLeft") loadPage(currentIndex - 1, "prev");
   if (e.key === "ArrowRight") loadPage(currentIndex + 1, "next");
 });
 
-/* Menu da home */
+let scrollCooldown = false;
+const scrollDelay = 500;
+document.addEventListener("wheel", (e) => {
+  if (isTransitioning || scrollCooldown) return;
+  if (e.deltaY > 0) loadPage(currentIndex + 1, "next");
+  else if (e.deltaY < 0) loadPage(currentIndex - 1, "prev");
+
+  scrollCooldown = true;
+  setTimeout(() => {
+    scrollCooldown = false;
+  }, scrollDelay);
+});
+
 stack.addEventListener("click", (e) => {
   const target = e.target.closest("[data-index]");
   if (!target) return;
-
   const index = Number(target.dataset.index);
   if (Number.isNaN(index)) return;
-
   loadPage(index, index > currentIndex ? "next" : "prev");
 });
 
-loadPage(0);
+setTimeout(() => {
+  const info = document.querySelector("#navbar p");
+  if (info) info.remove();
+}, 5000);
+
+loadPage(1);
